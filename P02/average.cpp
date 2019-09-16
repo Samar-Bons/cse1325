@@ -26,5 +26,7 @@ std::istream& operator>>(istream& ist, Average& average){
 }
 
 Average& Average::operator+=(double value){
+    _sum += value;
+    _values += 1;
     
 }
