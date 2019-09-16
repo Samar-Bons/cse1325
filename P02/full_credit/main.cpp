@@ -8,7 +8,7 @@ int main(){
     std::srand(7404);//rand needs srand with a seed
 
     //object and variable initialization
-    Average avg();
+    Average avg;
     int choice{-1};//randomly assigned value to choice except 0,1,2,9
 
     //using a while loop for calculator 
@@ -28,6 +28,13 @@ int main(){
         std::cout<<"Command?\n";
 
         std::cin>>choice;//to take in the command
+
+        while(std::cin.fail()){
+            std::cout<<"Invalid command. Try again- \n";
+            std::cin.clear();
+            std::cin.ignore(32767,'\n');
+            std::cin>>choice;
+        }
 
         //if statements for each case
 
