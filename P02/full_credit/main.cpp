@@ -1,5 +1,5 @@
+//#include <iostream>
 #include "average.h"
-#include <iostream>
 #include <cstdlib>
 
 int main(){
@@ -42,7 +42,7 @@ int main(){
         else if(choice == 2){
             //add random double between 0 and 100 to tot. avg.
 
-            avg += 100*((double)std::rand()/(double)RAND_MAX);
+           avg.operator+=(100*((double)std::rand()/(double)RAND_MAX));
             
         }
 
