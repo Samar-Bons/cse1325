@@ -21,8 +21,4 @@ class Average{
 
 };
 
-//std::ostream& operator<<(std::ostream& ost, Average& average);
-
-//std::istream& operator>>(std::istream& ist, Average& average);
-
 #endif
