@@ -1,6 +1,7 @@
 #ifndef AVERAGE_H
 #define AVERAGE_H
 
+//class declaration
 class Average{
     double _sum;
     int _values;

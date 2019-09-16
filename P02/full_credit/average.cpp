@@ -1,8 +1,14 @@
 #include "average.h"
 #include <iostream>
 
+
+//class Average implementation
+
+//constructor
 Average::Average():_sum{0},_values{0}{}
 
+
+//+friend operator<<
 std::ostream& operator<<(ostream& ost, const Average& average){
     if(average._values!=0){
         ost<<average._sum/average._values;
@@ -16,6 +22,7 @@ std::ostream& operator<<(ostream& ost, const Average& average){
 
 }
 
+//+friend operator >>
 std::istream& operator>>(istream& ist, Average& average){
     double temp;
     ist>>temp;
@@ -25,6 +32,7 @@ std::istream& operator>>(istream& ist, Average& average){
 
 }
 
+//+operator +=
 Average& Average::operator+=(double value){
     _sum += value;
     _values += 1;
