@@ -3,3 +3,7 @@
 Locomotive::Locomotive(double weight = 80000, double power = 13500)
 :Stock(weight),_power{power}{}
 
+double Locomotive::power(){
+    return _power;
+}
+
