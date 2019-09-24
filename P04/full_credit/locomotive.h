@@ -10,7 +10,6 @@ class Locomotive : public Stock {
     Locomotive(double weight = 80000, double power = 13500);
 
     double power();
-}
+};
 
 #endif
-

@@ -1,12 +1,12 @@
 #include "train.h"
 #include <cmath>
 
-void Train::add_locomotive(Locomotive& locomotive){
-    _locomotives.push_back(&locomotive);
+void Train::add_locomotive(Locomotive* locomotive){
+    _locomotives.push_back(locomotive);
 }
 
-void Train::add_coach(Coach& coach){
-    _coaches.push_back(&coach);
+void Train::add_coach(Coach* coach){
+    _coaches.push_back(coach);
 }
 
 double Train::speed(double minutes){
@@ -31,10 +31,10 @@ std::string Train::to_art(){
 
     for(int i = 0; i<6; i++){
         for(int j = 0; j < _locomotives.size(); j++){
-            output += _locomotives[j]->acii_art(i);
+            output += _locomotives[j]->ascii_art(i);
         }
         for(int k = 0; k < _coaches.size(); k++){
-            output += _coaches[k]->ascii_art(k);
+            output += _coaches[k]->ascii_art(i);
         }
         output += '\n';
     }
@@ -42,4 +42,3 @@ std::string Train::to_art(){
 
 }
 
-}

@@ -5,6 +5,7 @@
 
 class Coach: public Stock {
     int _passengers;
+    //double _weight;
 
     public:
     Coach(double weight = 28000);
@@ -13,7 +14,7 @@ class Coach: public Stock {
 
     double weight();
 
-}
+};
 
 #endif
 

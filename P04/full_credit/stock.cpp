@@ -4,7 +4,7 @@ Stock::Stock():_weight{NAN}{}
 
 Stock::Stock(double weight):_weight{weight}{}
 
-virtual double Stock::weight(){
+double Stock::weight(){
     return _weight;
 }
 

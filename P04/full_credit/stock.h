@@ -19,6 +19,6 @@ class Stock{
     virtual double weight();
 
     std::string ascii_art(int row);
-}
+};
 
 #endif

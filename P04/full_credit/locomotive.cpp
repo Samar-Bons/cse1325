@@ -1,6 +1,6 @@
 #include "locomotive.h"
 
-Locomotive::Locomotive(double weight = 80000, double power = 13500)
+Locomotive::Locomotive(double weight, double power)
 :Stock(weight),_power{power}{
 
     _art = { // Locomotive
