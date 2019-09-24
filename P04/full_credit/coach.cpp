@@ -1,6 +1,16 @@
 #include "coach.h"
 
-Coach::Coach(double weight = 28000):Stock(weight){}
+Coach::Coach(double weight = 28000):Stock(weight){
+
+    _art = { // Coach
+            "               ",
+            " ______________",
+            " | [] [] [] []|",
+            " |            |",
+            "='OO--------OO'",
+            "###############",
+            };
+}
 
 void Coach::add_passengers(int passengers){
 
@@ -9,6 +19,6 @@ void Coach::add_passengers(int passengers){
 }
 
 double Coach::weight() override {
-    return Stock::weight() + (_passengers*60);
+    return Stock::weight() + ((double)_passengers*60);
 }
 
