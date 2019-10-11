@@ -1,9 +1,9 @@
 CXXFLAGS += -std=c++17
 GTKFLAGS = `/usr/bin/pkg-config gtkmm-3.0 --cflags --libs`
 
-all: hello 
+all: main 
 
-hello: main.cpp mainwin.cpp *.h
+main: main.cpp mainwin.cpp *.h
 	$(CXX) $(CXXFLAGS) main.cpp mainwin.cpp $(GTKFLAGS) -o hello
 clean:
 	rm -f *.o *.gch hello
