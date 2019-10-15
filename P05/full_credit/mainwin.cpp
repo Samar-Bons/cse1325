@@ -1,9 +1,11 @@
 #include "mainwin.h"
+#include <iostream>
+ 
 
 Mainwin::Mainwin() : Mainwin{*(new Store)} { }
 Mainwin::Mainwin(Store& store)
  :  _store{&store},
-    label{Gtk::manage(new Gtk::Label{"This is the text area. Will update later."})},
+    data{Gtk::manage(new Gtk::Label{"This is the text area. Will update later."})},
     
 
  
@@ -37,7 +39,27 @@ Mainwin::Mainwin(Store& store)
     menuitem_quit->signal_activate().connect([this]{this->on_quit_click();});
     filemenu->append(*menuitem_quit);
 
-    
+    Gtk::MenuItem *menuitem_new_store = Gtk::manage(new Gtk::MenuItem("_New_Store", true));
+    menuitem_new_store->signal_activate().connect([this]{this->on_new_store_click();});
+    filemenu->append(*menuitem_new_store);
+
+
+
+
+
+    Gtk::MenuItem *menuitem_sweets = Gtk::manage(new Gtk::MenuItem("_Sweets", true));
+    menubar->append(*menuitem_sweets;
+    Gtk::Menu *sweetsmenu = Gtk::manage(new Gtk::Menu());
+    menuitem_sweets->set_submenu(*sweetsmenu);
+
+
+    Gtk::MenuItem *menuitem_add_sweet = Gtk::manage(new Gtk::MenuItem("_Add_sweet", true));
+    menuitem_add_sweet->signal_activate().connect([this]{this->on_add_sweet_click();});
+    sweetsmenu->append(*menuitem_add_sweet);
+
+    Gtk::MenuItem *menuitem_list_sweets = Gtk::manage(new Gtk::MenuItem("_List_sweets", true));
+    menuitem_list_sweets->signal_activate().connect([this]{this->on_list_sweets_click();});
+    sweetsmenu->append(*menuitem_list_sweets);
 
  
 
@@ -53,7 +75,7 @@ Mainwin::Mainwin(Store& store)
 
 
 
-    // ///////////////////////////////////    
+     // ///////////////////////////////////    
     // S T A T U S   B A R   D I S P L A Y
     // Provide a status bar for transient messages
 
@@ -70,6 +92,28 @@ Mainwin::~Mainwin() { }
 
 void Mainwin::on_quit_click(){
     close();
+}
+
+void Mainwin::on_new_store_click(){
+
+    _store = Store();
+
+
+}
+
+void Mainwin::on_add_sweet_click(){
+
+EntryDialog ed{*this, "Add a sweet and its price."};
+ed.set_text1("Sweet name");
+ed.set_text2("Sweet Price");
+
+ed.run();
+
+Sweet swit = Sweet(ed.get_text1(),(double)ed.get_text2());
+
+_store->add(swit);
+
+
 }
 
 
