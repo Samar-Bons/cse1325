@@ -61,6 +61,14 @@ Mainwin::Mainwin(Store& store)
     menuitem_list_sweets->signal_activate().connect([this]{this->on_list_sweets_click();});
     sweetsmenu->append(*menuitem_list_sweets);
 
+    Gtk::MenuItem *menuitem_help = Gtk::manage(new Gtk::MenuItem("_Help", true));
+    menubar->append(*menuitem_help;
+    Gtk::Menu *helpmenu = Gtk::manage(new Gtk::Menu());
+    menuitem_help->set_submenu(*helpmenu);
+
+    Gtk::MenuItem *menuitem_about = Gtk::manage(new Gtk::MenuItem("_About..", true));
+    menuitem_about->signal_activate().connect([this]{this->on_about_click();});
+    helpmenu->append(*menuitem_about);
  
 
     // /////////////
@@ -81,6 +89,8 @@ Mainwin::Mainwin(Store& store)
 
 
     // Make the vertical box and everything in it visible
+
+    vbox->show_all();
 
 }
 
@@ -116,7 +126,22 @@ _store->add(swit);
 
 }
 
+void on_list_sweets_click(){
+    std::string temp = "";
+    for (int i = 0; i < _store->num_sweets(); i++){
+        temp = temp + (_store->sweet(i+1)).name() + std::to_string((_store->sweet(i+1)).price())+"/n";
+    }
+    label->set_text(temp);
+}
 
+void on_about_click(){
+
+    Gtk::MessageDialog md{*this, "Mav's Ultimate Sweet Shop. /n Ver 1.0.0 /n Samarjit Singh Bons /n LGPL v2.1"};
+
+    md.run();
+
+
+}
 
 // /////////////////
 // U T I L I T I E S
