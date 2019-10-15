@@ -5,7 +5,7 @@
 Mainwin::Mainwin() : Mainwin{*(new Store)} { }
 Mainwin::Mainwin(Store& store)
  :  _store{&store},
-    data{Gtk::manage(new Gtk::Label{"This is the text area. Will update later."})},
+    data{Gtk::manage(new Gtk::Label{"This is the text area. Will update later."})}
     
 
  
@@ -48,7 +48,7 @@ Mainwin::Mainwin(Store& store)
 
 
     Gtk::MenuItem *menuitem_sweets = Gtk::manage(new Gtk::MenuItem("_Sweets", true));
-    menubar->append(*menuitem_sweets;
+    menubar->append(*menuitem_sweets);
     Gtk::Menu *sweetsmenu = Gtk::manage(new Gtk::Menu());
     menuitem_sweets->set_submenu(*sweetsmenu);
 
@@ -62,7 +62,7 @@ Mainwin::Mainwin(Store& store)
     sweetsmenu->append(*menuitem_list_sweets);
 
     Gtk::MenuItem *menuitem_help = Gtk::manage(new Gtk::MenuItem("_Help", true));
-    menubar->append(*menuitem_help;
+    menubar->append(*menuitem_help);
     Gtk::Menu *helpmenu = Gtk::manage(new Gtk::Menu());
     menuitem_help->set_submenu(*helpmenu);
 
@@ -106,7 +106,7 @@ void Mainwin::on_quit_click(){
 
 void Mainwin::on_new_store_click(){
 
-    _store = Store();
+    _store = &Store();
 
 
 }
@@ -114,8 +114,8 @@ void Mainwin::on_new_store_click(){
 void Mainwin::on_add_sweet_click(){
 
 EntryDialog ed{*this, "Add a sweet and its price."};
-ed.set_text1("Sweet name");
-ed.set_text2("Sweet Price");
+ed.set_text("Sweet name","Sweet Price");
+//ed.set_text2("Sweet Price");
 
 ed.run();
 
@@ -136,7 +136,7 @@ void on_list_sweets_click(){
 
 void on_about_click(){
 
-    Gtk::MessageDialog md{*this, "Mav's Ultimate Sweet Shop. /n Ver 1.0.0 /n Samarjit Singh Bons /n LGPL v2.1"};
+    MessageDialog md{*this, "Mav's Ultimate Sweet Shop. /n Ver 1.0.0 /n Samarjit Singh Bons /n LGPL v2.1"};
 
     md.run();
 
