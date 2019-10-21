@@ -21,6 +21,8 @@ class Mainwin : public Gtk::Window {
         void on_add_sweet_click();
         void on_list_sweets_click();
         void on_about_click();
+        void on_place_order_click();
+        
 
 
 

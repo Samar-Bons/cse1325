@@ -69,6 +69,22 @@ Mainwin::Mainwin(Store& store)
     Gtk::MenuItem *menuitem_about = Gtk::manage(new Gtk::MenuItem("_About..", true));
     menuitem_about->signal_activate().connect([this]{this->on_about_click();});
     helpmenu->append(*menuitem_about);
+
+
+
+    Gtk::MenuItem *menuitem_order = Gtk::manage(new Gtk::MenuItem("_Order", true));
+    menubar->append(*menuitem_order);
+    Gtk::Menu *ordermenu = Gtk::manage(new Gtk::Menu());
+    menuitem_order->set_submenu(*ordermenu);
+
+    Gtk::MenuItem *menuitem_place = Gtk::manage(new Gtk::MenuItem("_Place", true));
+    menuitem_place->signal_activate().connect([this]{this->on_place_order_click();});
+    ordermenu->append(*menuitem_place);
+
+
+
+
+
  
 
     // /////////////
@@ -142,6 +158,21 @@ void on_about_click(){
 
 
 }
+
+void on_place_order_click(){
+    EntryDialog ed1{*this, "Add a sweet number and quantity."};
+    ed1.set_text("Sweet number","Sweet Quantity");
+    ed1.run();
+
+    Order oda;
+
+    oda->add(Store::sweet((int)ed1.get_text1()),ed1.get_text2());
+
+
+
+}
+
+
 
 // /////////////////
 // U T I L I T I E S
