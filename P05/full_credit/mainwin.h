@@ -22,7 +22,9 @@ class Mainwin : public Gtk::Window {
         void on_list_sweets_click();
         void on_about_click();
         void on_place_order_click();
-        
+        void on_list_orders_click();
+
+
 
 
 

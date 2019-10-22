@@ -81,6 +81,10 @@ Mainwin::Mainwin(Store& store)
     menuitem_place->signal_activate().connect([this]{this->on_place_order_click();});
     ordermenu->append(*menuitem_place);
 
+    Gtk::MenuItem *menuitem_list = Gtk::manage(new Gtk::MenuItem("_List", true));
+    menuitem_list->signal_activate().connect([this]{this->on_list_orders_click();});
+    ordermenu->append(*menuitem_list);
+
 
 
 
@@ -166,10 +170,19 @@ void on_place_order_click(){
 
     Order oda;
 
-    oda->add(Store::sweet((int)ed1.get_text1()),ed1.get_text2());
+    oda->add(_store->(sweet((int)ed1.get_text1())),ed1.get_text2());
 
 
 
+}
+
+void on_list_orders_click(){
+    EntryDialog ed2{*this, "Please enter order number."};
+    ed2.set_text("Order number","");
+    ed2.run();
+
+    std::cout<<(_store->order((int)ed2.get_text1()));
+    
 }
 
 
