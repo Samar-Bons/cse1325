@@ -16,5 +16,5 @@ int Shelter::num_animals(){
 }
 
 Animal& Shelter::animal(int index){
-    return _available[index-1];
+    return _available[index];
 }
