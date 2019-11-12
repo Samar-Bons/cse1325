@@ -51,6 +51,19 @@ Mainwin::Mainwin()
     menuitem_list_animals->signal_activate().connect([this] {this->on_list_animals_click();});
     animalmenu->append(*menuitem_list_animals);
 
+    // C L I E N T //
+    Gtk::MenuItem *menuitem_client = Gtk::manage(new Gtk::MenuItem("_Client", true));
+    menubar->append(*menuitem_client);
+    Gtk::Menu *clientmenu = Gtk::manage(new Gtk::Menu());
+    menuitem_client->set_submenu(*clientmenu);
+
+    // New Client // 
+    Gtk::MenuItem *menuitem_new_client = Gtk::manage(new Gtk::MenuItem("_New_Client", true));
+    menuitem_new_client->set_tooltip_markup("Add new client. ");
+    menuitem_new_client->signal_activate().connect([this] {this->on_new_client_click();});
+    clientmenu->append(*menuitem_new_client);
+
+
     //T O O L   B A R //
 
     Gtk::Toolbar *toolbar = Gtk::manage(new Gtk::Toolbar);
@@ -71,6 +84,12 @@ Mainwin::Mainwin()
     list_animals_button->signal_clicked().connect([this] {this->on_list_animals_click();});
     toolbar->append(*list_animals_button);
 
+    // New Client //
+    Gtk::ToolButton *new_client_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::NEW));
+    new_client_button->set_tooltip_markup("Client -> New");
+    new_client_button->signal_clicked().connect([this] {this->on_new_client_click();});
+    toolbar->append(*new_client_button);
+
 
     //     Q U I T
     // Add a quit icon
@@ -78,6 +97,8 @@ Mainwin::Mainwin()
     quit_button->set_tooltip_markup("File -> Quit");
     quit_button->signal_clicked().connect([this] {this->on_quit_click();});
     toolbar->append(*quit_button);
+
+
 
 
 
@@ -98,6 +119,14 @@ void Mainwin::on_quit_click(){
 }
 
 void Mainwin::on_new_animal_click(){
+    MessagDialog md{*this,"Choose an animal: "};
+    md.add_button("Dog",2);
+    md.add_button("Cat",3);
+    md.add_button("Rabbit",4);
+
+    md.run();
+
+    if(md.signal_response()==2){
 
     EntryDialog ed{*this,"Attributes for new dog."};
     ed.set_text1("Breed...");
@@ -159,6 +188,138 @@ void Mainwin::on_new_animal_click(){
     Dog doge{db,name,gndr,age};
 
     shelter->add_animal(doge);
+    }
+    else if(md.signal_response()==3){
+
+
+    EntryDialog ed{*this,"Attributes for new cat."};
+    ed.set_text1("Breed...");
+    ed.set_text2("Name..");
+    ed.set_text3("Gender (M/F)");
+    ed.set_text4("Age");
+
+    ed.run();
+
+    std::string = breed;
+    breed = ed.get_text1();
+    Cat_breed db;
+    if((breed.compare("Persian"))==0)
+    db = Persian;
+
+    if((breed.compare("Russian"))==0)
+    db = Russian;
+
+    if((breed.compare("Bengal"))==0)
+    db = Bengal;
+
+    if((breed.compare("British"))==0)
+    db = British;
+
+
+    if((breed.compare("Siamese"))==0)
+    db = Siamese;
+
+
+    if((breed.compare("Sphynx"))==0)
+    db = Sphynx;
+
+
+
+    if((breed.compare("Ragdoll"))==0)
+    db = Ragdoll;
+
+    if((breed.compare("Birman"))==0)
+    db = Birman;
+
+
+
+    
+
+    std::string name = ed.get_text2();
+
+    std::string gender = ed.get_text3();
+
+    Gender gndr;
+
+    if((gender.compare("M"))==0)
+    gndr = M;
+
+    if((gender.compare("F"))==0)
+    gndr = F;
+
+    int age = std::stoi(ed.get_text4());
+
+    Cat doge{db,name,gndr,age};
+
+    shelter->add_animal(doge);
+
+
+
+    }
+    else if(md.signal_response()==4){
+
+    EntryDialog ed{*this,"Attributes for new rabbit."};
+    ed.set_text1("Breed...");
+    ed.set_text2("Name..");
+    ed.set_text3("Gender (M/F)");
+    ed.set_text4("Age");
+
+    ed.run();
+
+    std::string = breed;
+    breed = ed.get_text1();
+    Rabbit_breed db;
+    if((breed.compare("American"))==0)
+    db = American;
+
+    if((breed.compare("Belgian"))==0)
+    db = Belgian;
+
+    if((breed.compare("Californian"))==0)
+    db = Californian;
+
+    if((breed.compare("Dutch"))==0)
+    db = Dutch;
+
+
+    if((breed.compare("Angora"))==0)
+    db = Angora;
+
+
+    if((breed.compare("Harlequin"))==0)
+    db = Harlequin;
+
+
+
+    if((breed.compare("Lionhead"))==0)
+    db = Lionhead;
+
+    if((breed.compare("Tan"))==0)
+    db = Tan;
+
+
+
+    
+
+    std::string name = ed.get_text2();
+
+    std::string gender = ed.get_text3();
+
+    Gender gndr;
+
+    if((gender.compare("M"))==0)
+    gndr = M;
+
+    if((gender.compare("F"))==0)
+    gndr = F;
+
+    int age = std::stoi(ed.get_text4());
+
+    Rabbit doge{db,name,gndr,age};
+
+    shelter->add_animal(doge);
+
+    }
         
     
 }
@@ -174,6 +335,33 @@ for(i = 0; i < j; i++){
     dat = dat + (shelter.animal(i)).to_string()+"/n";
 }
     data->set_text(dat);
+}
+
+void Mainwin::on_new_client_click(){
+    EntryDialog ed{*this,"Attributes for new client."};
+    ed.set_text1("Name...");
+    ed.set_text2("Phone Number...");
+    ed.set_text3("Email Address...");
+    //ed.set_text4("Age");
+    ed.run();
+
+    std::string name1;
+    name1 = ed.get_text1();
+    std::string phno;
+    phno = ed.get_text2();
+    int number;
+    number = std::stoi(phno);
+    std::string mailadd;
+    mailadd = ed.get_text3();
+
+    Client client = Client(name1, number, mailadd);
+
+    shelter.add_client(client);
+
+
+
+
+
 }
 
 
