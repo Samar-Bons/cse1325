@@ -19,7 +19,7 @@ class Client{
     Animal& animal(int index) const;
     friend std::ostream& operator<<(std::ostream& ost, const Client& client){
         ost << client._name+"\n";
-        return ost
+        return ost;
     }
     
 
