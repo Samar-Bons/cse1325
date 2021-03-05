@@ -1,13 +1,20 @@
+/* main window class header file */
+
 #ifndef __MAINWIN_H
 #define __MAINWIN_H
 
 #include <gtkmm.h>
 
+/* Declaring the class Mainwin inheriting from parent class Gtk::Window */
+
 class Mainwin : public Gtk::Window {
   public:
+    // The constructor and destructor publicly
     Mainwin();
     virtual ~Mainwin();
   protected:
+
+    // Some on_click functions implemented throughtout the directory
     void on_quit_click();
     void on_new_animal_click();
     void on_list_animals_click();
@@ -17,10 +24,14 @@ class Mainwin : public Gtk::Window {
     void on_list_adopted_click(); 
     void status(std::string s);
   private:
+
+    // Private members
     Gtk::Label* data;
     Gtk::Label* msg;
     Shelter* shelter;
 };
+
+/* Declaring the EntryDialog class inheriting from parent Gtk::MessageDialog */
 
 class EntryDialog : public Gtk::MessageDialog {
   public:
@@ -41,4 +52,5 @@ class EntryDialog : public Gtk::MessageDialog {
     Gtk::Entry* entry3;
     Gtk::Entry* entry4;
 };
+
 #endif

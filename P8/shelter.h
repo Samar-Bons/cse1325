@@ -1,3 +1,5 @@
+/* Header for Shelter class */
+
 #ifndef __SHELTER_H
 #define __SHELTER_H
 
@@ -7,11 +9,15 @@
 class Shelter
 {
     private:
+
+    // Every Shelter has a name, a list of Animals and a list of Clients
     std::string _name;
     std::vector<Animal*> _available;
     std::vector<Client> _clients;
 
     public:
+
+    // Public methods 
     Shelter(std::string name);
     std::string name();
     void add_animal(Animal& animal);

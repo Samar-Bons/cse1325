@@ -1,9 +1,15 @@
+/* Header file for class Rabbit */
+
 #ifndef __RABBIT_H
 #define __RABBIT_H
 
 #include <string>
 
+// enumerating the breeds of rabbits the shelter deals with
+
 enum class Rabbit_breed{American, Belgian, Californian, Dutch, Angora, Harlequin, Lionhead, Tan};
+
+// declaring class Rabbit
 
 class Rabbit: public Animal
 {

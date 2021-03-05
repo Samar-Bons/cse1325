@@ -1,11 +1,15 @@
+/* Header for class Animal */
+
 #ifndef __ANIMAL_H
 #define __ANIMAL_H
 
 #include <iostream>
 #include <string>
 
+// Enumerating the genders of animals 
 enum class Gender{M,F};
 
+// declaring class Animal
 class Animal{
     protected:
     std::string _name;
